@@ -1,0 +1,11 @@
+[project]
+name = "aitt-symbol-clf-deploy"
+version = "0.1.0"
+description = "Deployment code for the AITT Angle Symbol Classifier"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ansible>=13.3.0",
+    "boto3>=1.42.39",
+    "botocore[crt]>=1.42.39",
+]

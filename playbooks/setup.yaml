@@ -1,0 +1,31 @@
+---
+- name: Setup the EC2 instance
+  hosts: aitt_instance
+  become: true
+
+  tasks:
+    - name: Update all packages
+      shell: "sudo yum update -y"
+      changed_when: false
+
+    - name: Install Docker
+      ansible.builtin.package:
+        name: docker
+        state: present
+
+    - name: Start service Docker, if not started
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+
+    - name: Add ec2-user to the docker group
+      ansible.builtin.user:
+        name: ec2-user
+        groups: docker
+        append: yes
+    
+    - name: Enable colorful systemd output for future connections
+      ansible.builtin.lineinfile:
+        path: /home/ec2-user/.bash_profile
+        line: SYSTEMD_COLORS=true
