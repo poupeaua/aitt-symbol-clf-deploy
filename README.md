@@ -26,7 +26,7 @@ You can put them in a .env file and load it with the `source .env` command.
 ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/keys/name-of-your-private-key.pem
 AWS_ACCOUNT_ID=************
 AWS_REGION=***
-IMAGE_NAME=***
+IMAGE_NAME=aitt/angle-symbol-clf
 IMAGE_TAG=0.1.0
 SERVICE_NAME=aitt-symbol-clf
 PORT_INPUT=8000
