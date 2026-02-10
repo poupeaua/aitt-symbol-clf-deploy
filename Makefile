@@ -8,7 +8,8 @@ setup: check-env-vars
 		-e "AWS_REGION=${AWS_REGION}" \
 		-e "IMAGE_NAME=${IMAGE_NAME}" \
 		-e "IMAGE_TAG=${IMAGE_TAG}" \
-		-e "PORT_INPUT=${PORT_INPUT}"
+		-e "PORT_INPUT=${PORT_INPUT}" \
+		-e "DOCKER_NETWORK=${DOCKER_NETWORK}"
 
 deploy: check-env-vars
 	ansible-playbook playbooks/deploy.yaml \
@@ -17,4 +18,5 @@ deploy: check-env-vars
 		-e "AWS_REGION=${AWS_REGION}" \
 		-e "IMAGE_NAME=${IMAGE_NAME}" \
 		-e "IMAGE_TAG=${IMAGE_TAG}" \
-		-e "PORT_INPUT=${PORT_INPUT}"
+		-e "PORT_INPUT=${PORT_INPUT}" \
+		-e "DOCKER_NETWORK=${DOCKER_NETWORK}"

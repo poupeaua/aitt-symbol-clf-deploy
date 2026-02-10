@@ -13,4 +13,5 @@ check-env-vars:
 	$(call check_var,$(IMAGE_NAME),IMAGE_NAME)
 	$(call check_var,$(IMAGE_TAG),IMAGE_TAG)
 	$(call check_var,$(PORT_INPUT),PORT_INPUT)
+	$(call check_var,$(DOCKER_NETWORK),DOCKER_NETWORK)
 	@echo "✅ All required environment variables are set."

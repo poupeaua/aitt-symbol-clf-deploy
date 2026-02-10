@@ -18,6 +18,9 @@
         name: docker
         state: started
 
+    - name: Create a network
+      community.docker.docker_network:
+        name: "{{ DOCKER_NETWORK }}"
 
     - name: Add ec2-user to the docker group
       ansible.builtin.user:
