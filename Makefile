@@ -6,9 +6,6 @@ setup: check-env-vars
 		-e "ansible_ssh_private_key_file=${ANSIBLE_PRIVATE_KEY_FILE}" \
 		-e "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" \
 		-e "AWS_REGION=${AWS_REGION}" \
-		-e "IMAGE_NAME=${IMAGE_NAME}" \
-		-e "IMAGE_TAG=${IMAGE_TAG}" \
-		-e "PORT_INPUT=${PORT_INPUT}" \
 		-e "DOCKER_NETWORK=${DOCKER_NETWORK}"
 
 deploy: check-env-vars
@@ -18,5 +15,6 @@ deploy: check-env-vars
 		-e "AWS_REGION=${AWS_REGION}" \
 		-e "IMAGE_NAME=${IMAGE_NAME}" \
 		-e "IMAGE_TAG=${IMAGE_TAG}" \
+		-e "SERVICE_NAME=${SERVICE_NAME}" \
 		-e "PORT_INPUT=${PORT_INPUT}" \
 		-e "DOCKER_NETWORK=${DOCKER_NETWORK}"

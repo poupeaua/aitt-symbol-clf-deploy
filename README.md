@@ -28,7 +28,9 @@ AWS_ACCOUNT_ID=************
 AWS_REGION=***
 IMAGE_NAME=***
 IMAGE_TAG=0.1.0
+SERVICE_NAME=aitt-symbol-clf
 PORT_INPUT=8000
+DOCKER_NETWORK=aitt-network
 ```
 
 
