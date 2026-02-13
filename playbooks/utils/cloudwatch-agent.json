@@ -1,0 +1,26 @@
+{
+    "metrics": {
+        "metrics_collected": {
+            "mem": {
+                "measurement": [
+                    "mem_used_percent",
+                    "mem_used",
+                    "mem_cached",
+                    "mem_total"
+                ],
+                "metrics_collection_interval": 30
+            },
+            "disk": {
+                "measurement": [
+                    "used_percent"
+                ],
+                "resources": [
+                    "*"
+                ]
+            }
+        },
+        "append_dimensions": {
+            "InstanceId": "${aws:InstanceId}"
+        }
+    }
+}

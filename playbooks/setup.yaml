@@ -2,11 +2,16 @@
 - name: Setup the EC2 instance
   hosts: aitt_instance
   become: true
+  vars:
+    CLOUDWATCH_CONFIG_FILENAME: cloudwatch-agent.json
+    CLOUDWATCH_CONFIG_DIRPATH: /opt/aws/amazon-cloudwatch-agent/etc
 
   tasks:
     - name: Update all packages
       shell: "sudo yum update -y"
       changed_when: false
+
+    # ========= DOCKER ==========
 
     - name: Install Docker
       ansible.builtin.package:
@@ -27,6 +32,24 @@
         name: ec2-user
         groups: docker
         append: yes
+
+    # ======== CloudWatch ========
+
+    - name: Install CloudWatch Agent
+      ansible.builtin.package:
+        name: amazon-cloudwatch-agent
+        state: present
+
+    - name: Import CloudWatch configuration file
+      template:
+        src: utils/{{ CLOUDWATCH_CONFIG_FILENAME }}
+        dest: "{{ CLOUDWATCH_CONFIG_DIRPATH }}/{{ CLOUDWATCH_CONFIG_FILENAME }}"
+
+    - name: Restart CloudWatch Agent
+      shell: "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:{{ CLOUDWATCH_CONFIG_DIRPATH }}/{{ CLOUDWATCH_CONFIG_FILENAME }}"
+      changed_when: false
+
+    # ======== SYSTEMD ========
     
     - name: Enable colorful systemd output for future connections
       ansible.builtin.lineinfile:
