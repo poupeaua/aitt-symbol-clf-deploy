@@ -7,6 +7,28 @@ Basically, another repository manage the deployment of the ML model inference co
 This repository is used to deploy the container on the EC2 instance and ensure
 it is up and running via Ansible (and systemd behind the scene on the remote server).
 
+# Setup the EC2 instance
+
+This repository is also responsible to provide the *basic* setup for the EC2
+instance. This basic setup includes:
+
+1. **General**: making updates
+2. **Docker**: installing Docker and configuring Docker properly for further use
+3. **CloudWatch**: configuring CloudWatch Agent to send wanted metrics
+
+This _theoretically_ should be done before any other specific deployments.
+Those specific deployments are: 
+- **AITT Angle Symbol ML Deployment**: This repository main goal
+- **AITT Core**: the deployment of the AITT Core
+
+Thus this should be in another dedicated repostory since this is another responsability: 
+setting up the base of the instance so that the rest of the deployment works like a 
+charm.
+
+However for the sake of simplicity we do it here for the moment.
+
+If the setup becomes to complex, we will move it to another repository.
+
 # Pre-requisites
 
 ## Ansible
