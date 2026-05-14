@@ -1,11 +1,15 @@
 include .env
 include .scripts/ensure_env_vars.mk
 
+inventory-check:
+	ansible-inventory --list --flush-cache
+
 setup: check-env-vars
 	ansible-playbook playbooks/setup.yaml \
 		-e "ansible_ssh_private_key_file=${ANSIBLE_PRIVATE_KEY_FILE}" \
 		-e "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" \
 		-e "AWS_REGION=${AWS_REGION}" \
+		-e "ENV=${ENV}" \
 		-e "DOCKER_NETWORK=${DOCKER_NETWORK}"
 
 deploy: check-env-vars
@@ -13,6 +17,7 @@ deploy: check-env-vars
 		-e "ansible_ssh_private_key_file=${ANSIBLE_PRIVATE_KEY_FILE}" \
 		-e "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" \
 		-e "AWS_REGION=${AWS_REGION}" \
+		-e "ENV=${ENV}" \
 		-e "IMAGE_NAME=${IMAGE_NAME}" \
 		-e "IMAGE_TAG=${IMAGE_TAG}" \
 		-e "SERVICE_NAME=${SERVICE_NAME}" \
